@@ -74,7 +74,7 @@ BETTER_TRANFORMER_LAYERS_MAPPING_DICT = {
     "EncoderLayer": FSMTEncoderLayerBetterTransformer,
     "ViltLayer": ViltLayerBetterTransformer,
     # Audio models:
-    "ASTLayer": ASTLayerBetterTransformer, 
+    "ASTLayer": ASTLayerBetterTransformer,
 }
 
 

@@ -232,6 +232,7 @@ class BertLayerBetterTransformer(BetterTransformerBaseLayer):
             hidden_states = hidden_states.to_padded_tensor(0.0)
         return (hidden_states,)
 
+
 class ASTLayerBetterTransformer(BetterTransformerBaseLayer):
     def __init__(self, ast_layer, config):
         r"""
@@ -453,6 +454,7 @@ class BartEncoderLayerBetterTransformer(BetterTransformerBaseLayer):
             hidden_states = hidden_states.to_padded_tensor(0.0)
         return (hidden_states,)
 
+
 class MBartEncoderLayerBetterTransformer(BetterTransformerBaseLayer):
     def __init__(self, mbart_layer, config):
         r"""
@@ -561,6 +563,7 @@ class MBartEncoderLayerBetterTransformer(BetterTransformerBaseLayer):
         if hidden_states.is_nested and self.is_last_layer:
             hidden_states = hidden_states.to_padded_tensor(0.0)
         return (hidden_states,)
+
 
 class DistilBertLayerBetterTransformer(BetterTransformerBaseLayer):
     def __init__(self, bert_layer, config):
