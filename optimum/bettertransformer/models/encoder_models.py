@@ -247,7 +247,7 @@ class ASTLayerBetterTransformer(BetterTransformerBaseLayer):
             torch.cat(
                 [
                     ast_layer.attention.attention.query.weight,
-                    ast_layer.attention.attention.weight,
+                    ast_layer.attention.attention.key.weight,
                     ast_layer.attention.attention.value.weight,
                 ]
             )
@@ -264,16 +264,16 @@ class ASTLayerBetterTransformer(BetterTransformerBaseLayer):
         )
 
         # Out proj layer
-        self.out_proj_weight = ast_layer.attention.output.weight
-        self.out_proj_bias = ast_layer.attention.output.bias
+        self.out_proj_weight = ast_layer.attention.output.dense.weight
+        self.out_proj_bias = ast_layer.attention.output.dense.bias
 
         # Linear layer 1
-        self.linear1_weight = ast_layer.intermediate.weight
-        self.linear1_bias = ast_layer.intermediate.bias
+        self.linear1_weight = ast_layer.intermediate.dense.weight
+        self.linear1_bias = ast_layer.intermediate.dense.bias
 
         # Linear layer 2
-        self.linear2_weight = ast_layer.output.weight
-        self.linear2_bias = ast_layer.output.bias
+        self.linear2_weight = ast_layer.output.dense.weight
+        self.linear2_bias = ast_layer.output.dense.bias
 
         # Layer norm 1
         self.norm1_eps = ast_layer.layernorm_before.eps
@@ -287,7 +287,7 @@ class ASTLayerBetterTransformer(BetterTransformerBaseLayer):
 
         # Model hyper parameters
         self.num_heads = ast_layer.attention.attention.num_attention_heads
-        self.embed_dim = ast_layer.chunk_size_feed_forward
+        self.embed_dim = int(vit_layer.attention.attention.attention_head_size * self.num_heads)
 
         # Last step: set the last layer to `False` -> this will be set to `True` when converting the model
         self.is_last_layer = False

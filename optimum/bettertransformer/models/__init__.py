@@ -15,6 +15,7 @@ import warnings
 
 from .encoder_models import (
     AlbertLayerBetterTransformer,
+    ASTLayerBetterTransformer,
     BartEncoderLayerBetterTransformer,
     BertLayerBetterTransformer,
     MBartEncoderLayerBetterTransformer,
@@ -72,6 +73,8 @@ BETTER_TRANFORMER_LAYERS_MAPPING_DICT = {
     # FSMTModel:
     "EncoderLayer": FSMTEncoderLayerBetterTransformer,
     "ViltLayer": ViltLayerBetterTransformer,
+    # Audio models:
+    "ASTLayer": ASTLayerBetterTransformer, 
 }
 
 
